@@ -27,6 +27,8 @@ jobs:
     name: Check format
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
       - name: install ruff
         uses: astral-sh/ruff-actions@v3
       - name: run check
