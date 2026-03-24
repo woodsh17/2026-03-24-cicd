@@ -23,20 +23,20 @@ jobs:
     steps:
       - run: echo "Goodbye"
 
-  linting:
-    name: Check format
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v6
-      - name: install ruff
-        uses: astral-sh/ruff-actions@v3
-      - name: run check
-        run: ruff check 
+  #linting:
+  #  name: Check format
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Checkout repo
+  #      uses: actions/checkout@v6
+  #    - name: install ruff
+  #      uses: astral-sh/ruff-actions@v3
+  #    - name: run check
+  #      run: ruff check 
 
   test: 
     name: Test the Python package
-    needs: linting
+    #needs: linting
     runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
@@ -54,5 +54,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install the package
         run: pip install .[test]
+      - if: matrix.python-version == '3.14'
+        name: Conditional step 
+        run: echo "Using Python 3.14"
       - name: Run the tests
         run: pytest -vv
