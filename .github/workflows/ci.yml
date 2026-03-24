@@ -9,4 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Hello World 
-      - run: echo "Hello World"
+        run: echo "Hello World"
+      - name: Second steps
+        run: echo "second"
+
+  goodbye:
+    name: My Goodbye job
+    needs: hello
+    runs-on: windows-latest
+    steps:
+      - run: echo "Goodbye"
