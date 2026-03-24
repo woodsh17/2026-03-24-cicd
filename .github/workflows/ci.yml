@@ -19,3 +19,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: echo "Goodbye"
+
+  test: 
+    name: Test the Python package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install the package
+        run: pip install .[test]
+      - name: Run the tests
+        run: pytest -vv
