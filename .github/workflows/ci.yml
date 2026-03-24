@@ -23,8 +23,18 @@ jobs:
     steps:
       - run: echo "Goodbye"
 
+  linting:
+    name: Check format
+    runs-on: ubuntu-latest
+    steps:
+      - name: install ruff
+        uses: astral-sh/ruff-actions
+      - name: run check
+        run: ruff check 
+
   test: 
     name: Test the Python package
+    needs: linting
     runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
