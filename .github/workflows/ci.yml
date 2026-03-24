@@ -57,5 +57,7 @@ jobs:
       - if: matrix.python-version == '3.14'
         name: Conditional step 
         run: echo "Using Python 3.14"
+      - if: runner.os == 'Linux'
+        run: echo "This is Linux"
       - name: Run the tests
         run: pytest -vv
